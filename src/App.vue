@@ -1,10 +1,20 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <component :is="layout"> </component>
   <router-view />
 </template>
+<script>
+import { useRoute } from "vue-router";
+import { computed } from "vue";
+import { PUBLIC_LAYOUT } from "@/constraints";
+export default {
+  setup() {
+    const route = useRoute();
+    return {
+      layout: computed(() => (route.meta.layout || PUBLIC_LAYOUT) + "-layout"),
+    };
+  },
+};
+</script>
 
 <style>
 #app {
