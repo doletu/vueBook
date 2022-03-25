@@ -17,27 +17,17 @@ export default {
     return {
       ownerUsers: [],
       q: "",
-      user: "",
-      publishdate: "",
     };
   },
   methods: {
     emitEvent() {
       this.$emit("filter", {
         keyword: this.q,
-        user: this.user,
-        publishdate: this.publishdate,
       });
     },
   },
   watch: {
     q() {
-      this.emitEvent();
-    },
-    user() {
-      this.emitEvent();
-    },
-    publishdate() {
       this.emitEvent();
     },
   },
@@ -58,6 +48,7 @@ input,
 select {
   padding: 5px;
   margin-left: 5px;
+  margin-right: 5px;
   margin-top: 20px;
 }
 </style>

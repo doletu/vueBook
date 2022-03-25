@@ -10,4 +10,8 @@ export function registerGlobalComponent(app) {
     "default-layout",
     defineAsyncComponent(() => import("@/layouts/defaultlayout"))
   );
+  app.component(
+    "DashBoard-layout",
+    defineAsyncComponent(() => import("@/layouts/authlayout"))
+  );
 }
