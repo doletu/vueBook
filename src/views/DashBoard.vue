@@ -3,7 +3,7 @@
     <div class="row">
       <button
         @click="onLogOut"
-        class="bg-primary text-white font-bold rounded-lg"
+        class="bg-primary text-white font-bold rounded-lg w-[100px]"
       >
         LogOut
       </button>
