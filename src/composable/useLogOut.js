@@ -15,7 +15,7 @@ async function LogOut() {
       mode: "cors",
     })
     .then((response) => {
-      return response.status;
+      return response;
     })
     .catch((error) => {
       error.value = error.message;

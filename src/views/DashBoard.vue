@@ -21,6 +21,10 @@ import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useLogOut } from "@/composable/useLogOut";
 import { useGetData } from "@/composable/useGetData";
+
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster({});
 export default {
   name: "Posts",
   components: {
@@ -34,7 +38,11 @@ export default {
       var response = await LogOut().then((response) => {
         return response;
       });
-      if (response != null) {
+      if (response != undefined) {
+        toaster.success(`LogOut Success`, {
+          position: "top-right",
+          duration: 4000,
+        });
         router.push({
           name: "home",
           replace: true,

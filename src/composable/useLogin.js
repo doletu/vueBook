@@ -12,7 +12,7 @@ async function Login(userName, password) {
   var url = BASE_URL + "login?userName=" + userName + "&password=" + password;
   var signature = generateSignature(url, "GET", timeStamp);
   var headersData = generateHeader(signature, timeStamp);
-  await axios
+  var response = await axios
     .get(url, {
       headers: headersData,
       mode: "cors",
@@ -21,8 +21,9 @@ async function Login(userName, password) {
       return response;
     })
     .catch((error) => {
-      error.value = error.message;
+      error.value = error;
     });
+  return response;
 }
 
 export function userLogin() {

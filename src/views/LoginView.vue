@@ -48,6 +48,10 @@
 import { userLogin } from "@/composable/useLogin";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster({});
+
 export default {
   setup() {
     const router = useRouter();
@@ -56,12 +60,21 @@ export default {
     const password = ref("");
     async function onSubmit() {
       var data = await Login(userName.value, password.value);
-      console.log("Data: " + data);
-      if (error.value == null) {
+      console.log(data);
+      if (data != undefined) {
+        toaster.success(`Login Success`, {
+          position: "top-right",
+          duration: 4000,
+        });
         router.push({
           name: "DashBoard",
           replace: true,
           params: { data },
+        });
+      } else {
+        toaster.error(`Login Fail`, {
+          position: "top-right",
+          duration: 4000,
         });
       }
     }
